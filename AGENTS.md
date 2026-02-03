@@ -33,6 +33,30 @@ bd update <id> --notes "additional notes"
 bd update <id> --acceptance "acceptance criteria"
 ```
 
+## Search Cheat Sheet
+
+Use `bd search` for full-text search across title/description/ID. Use `bd list` for field-specific filters.
+
+```bash
+# Full-text search
+bd search "auth"
+bd search "RFC 6749" --status open --limit 20
+bd search "migration" --updated-after 2025-01-01 --sort updated --reverse
+
+# Field-specific filters
+bd list --title-contains "auth"
+bd list --desc-contains "decision"
+bd list --notes-contains "TODO"
+
+# Labels (AND / OR)
+bd list --label bug,critical
+bd list --label-any frontend,backend
+
+# Priority and time ranges
+bd list --priority-min 0 --priority-max 1
+bd list --created-after 2024-01-01 --closed-before 2024-12-31
+```
+
 ## Landing the Plane (Session Completion)
 
 **When ending a work session**, you MUST complete ALL steps below. Work is NOT complete until `git push` succeeds.
